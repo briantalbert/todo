@@ -2,6 +2,8 @@ import { Project, buildNewProjectWindow } from "./project";
 import css from './style.css';
 import { generateProjects } from "./testdata";
 
+import { Task, buildNewTaskWindow} from "./task.js";
+
 function createBlankMainPage() {
     const container = document.querySelector('.container');
     const blankMainPageDiv = document.createElement('div');
@@ -53,9 +55,18 @@ function addNewButtonEventListeners() {
 
         button.addEventListener('mouseup', (e) => {
             button.classList.remove('clicked');
-            buildNewProjectWindow();
-            console.log('clicked');
-            console.log(e.target.classList[0]);
+            switch (e.target.classList[0]) {
+                case "newproject":
+                    buildNewProjectWindow();
+                    break;
+            
+                case "newtask":
+                    buildNewTaskWindow();
+                    break;
+            
+                default:
+                    break;
+            }
         })
     });
 }
