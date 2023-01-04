@@ -20,5 +20,19 @@ export function buildNewProjectWindow() {
     const template = document.querySelector(".newprojectform");
     const clone = template.content.cloneNode(true);
 
-    container.appendChild(clone);       
+    container.appendChild(clone);
+    
+    addEventListeners();
+}
+
+function addEventListeners () {
+    const createNewButton = document.querySelector('button.createnew');
+    const createAndAddButton = document.querySelector('button.createandadd');
+
+    createNewButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        var projectName = document.getElementById("projectname").value;
+        alert(projectName);
+        //var nameValue = document.getElementById("uniqueID").value;
+    })
 }

@@ -4,6 +4,8 @@ import { generateProjects } from "./testdata";
 
 import { Task, buildNewTaskWindow} from "./task.js";
 
+let projList = generateProjects();
+
 function createBlankMainPage() {
     const container = document.querySelector('.container');
     const blankMainPageDiv = document.createElement('div');
@@ -27,18 +29,9 @@ function createBlankMainPage() {
     container.appendChild(blankMainPageDiv);
 }
 
-function addProjectToList(project) {
-    let listItem = document.createElement('li');
-    listItem.textContent = project.getName();
-    let listContainer = document.querySelector('.projectitems');
-    listContainer.appendChild(listItem);
-}
-
-function addProjectsToList() {
+function addProjectsToPage() {
     //for testing purposes, generic list of project names
-    let projectList = generateProjects();
-
-    projectList.forEach(project => {
+    projList.forEach(project => {
         let listItem = document.createElement('li');
         listItem.textContent = project.getName();
         let listContainer = document.querySelector('.projectitems');
@@ -71,7 +64,11 @@ function addNewButtonEventListeners() {
     });
 }
 
+function addProjectToList(project) {
+    projList.push(project);
+}
+
 createBlankMainPage();
-addProjectsToList();
+addProjectsToPage();
 addNewButtonEventListeners();
 
