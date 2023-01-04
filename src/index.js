@@ -1,10 +1,8 @@
-import { Project, buildNewProjectWindow } from "./project";
+import { Project, buildNewProjectWindow, getProjList } from "./project";
 import css from './style.css';
 import { generateProjects } from "./testdata";
 
 import { Task, buildNewTaskWindow} from "./task.js";
-
-let projList = generateProjects();
 
 function createBlankMainPage() {
     const container = document.querySelector('.container');
@@ -30,7 +28,7 @@ function createBlankMainPage() {
 }
 
 function addProjectsToPage() {
-    //for testing purposes, generic list of project names
+    let projList = getProjList();
     projList.forEach(project => {
         let listItem = document.createElement('li');
         listItem.textContent = project.getName();
@@ -64,11 +62,11 @@ function addNewButtonEventListeners() {
     });
 }
 
-function addProjectToList(project) {
+export function addProjectToList(project) {
     projList.push(project);
 }
 
 createBlankMainPage();
-addProjectsToPage();
+//addProjectsToPage();
 addNewButtonEventListeners();
 
