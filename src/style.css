@@ -16,6 +16,9 @@
     grid-template-columns: 1fr 3fr;
 }
 
+.newtask.unclickable {
+    background-color: grey;
+}
 .header {
     display: flex;
     flex-direction: row;
@@ -135,4 +138,45 @@ li:hover {
 .makenewproject {
     align-content: center;
     justify-content: center;
+}
+
+.makenewtask form {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr;
+    gap: .5em;
+}
+
+#tasknamelabel,
+#projectnamelabel {
+    grid-row: 1 / 2;
+}
+
+#tasknamelabel {
+    grid-column: 1 / 2;
+}
+
+#projectnamelabel {
+    grid-column: 2 / 3;
+}
+
+#projectname,
+#projects {
+    grid-row: 2 / 3;
+}
+
+#projectname {
+    grid-column: 1 / 2;
+}
+
+#projects {
+    grid-column: 2 / 3;
+}
+
+.buttons button {
+    width: fit-content;
+}
+
+.buttons {
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
 }

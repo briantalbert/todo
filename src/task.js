@@ -35,4 +35,14 @@ export function buildNewTaskWindow() {
     });
 
     container.appendChild(clone);
+
+    addEventListeners();
+}
+
+function addEventListeners() {
+    const createNewButton = document.getElementById("addtoproject");
+    createNewButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('you pressed the button');
+    })
 }

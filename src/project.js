@@ -1,4 +1,5 @@
 import { createBlankMainPage } from './home';
+import { buildNewTaskWindow } from "./task";
 
 export class Project {
     constructor(projName) {
@@ -45,9 +46,24 @@ function addEventListeners () {
             projList.push(newProj);
             document.getElementById("projectname").value = "";
             addProjectToPage(newProj);
+            createBlankMainPage();
         }
         
     })
+
+    createAndAddButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        var projectName = document.getElementById("projectname").value;
+        if (projectName != "") {    
+            const newProj = new Project(projectName);
+            projList.push(newProj);
+            document.getElementById("projectname").value = "";
+            addProjectToPage(newProj);
+            buildNewTaskWindow();
+        }
+    })
+
+
 }
 
 function addProjectToPage(newProj) {
@@ -55,5 +71,4 @@ function addProjectToPage(newProj) {
     listItem.textContent = newProj.getName();
     let listContainer = document.querySelector('.projectitems');
     listContainer.appendChild(listItem);
-    createBlankMainPage();
 }

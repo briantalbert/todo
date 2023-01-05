@@ -1,4 +1,4 @@
-import { buildNewProjectWindow } from "./project";
+import { buildNewProjectWindow, getProjList } from "./project";
 import { Task, buildNewTaskWindow} from "./task.js";
 
 export function createBlankMainPage() {
@@ -25,6 +25,12 @@ export function createBlankMainPage() {
 
     blankMainPageDiv.appendChild(createNew);
     container.appendChild(blankMainPageDiv);
+
+    if (getProjList().length == 0) {
+        newTaskSpan.classList.add('unclickable');
+    } else {
+        newTaskSpan.classList.remove('unclickable');
+    }
     addNewButtonEventListeners();
 
 }
@@ -44,7 +50,11 @@ function addNewButtonEventListeners() {
                     break;
             
                 case "newtask":
-                    buildNewTaskWindow();
+                    if (button.classList.contains('unclickable')) {
+                        break;
+                    } else {
+                        buildNewTaskWindow();
+                    }
                     break;
             
                 default:
