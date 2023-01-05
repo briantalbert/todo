@@ -1,3 +1,5 @@
+import { createBlankMainPage } from './home';
+
 export class Project {
     constructor(projName) {
         this.name = projName;
@@ -27,6 +29,10 @@ export function buildNewProjectWindow() {
     addEventListeners();
 }
 
+export function getProjList() {
+    return projList;
+}
+
 function addEventListeners () {
     const createNewButton = document.querySelector('button.createnew');
     const createAndAddButton = document.querySelector('button.createandadd');
@@ -34,19 +40,20 @@ function addEventListeners () {
     createNewButton.addEventListener('click', (e) => {
         e.preventDefault();
         var projectName = document.getElementById("projectname").value;
-        const newProj = new Project(projectName);
-        projList.push(newProj);
-        addProjectsToPage(newProj);
+        if (projectName != "") {    
+            const newProj = new Project(projectName);
+            projList.push(newProj);
+            document.getElementById("projectname").value = "";
+            addProjectToPage(newProj);
+        }
+        
     })
 }
 
-function addProjectsToPage(newProj) {
+function addProjectToPage(newProj) {
     let listItem = document.createElement('li');
     listItem.textContent = newProj.getName();
     let listContainer = document.querySelector('.projectitems');
     listContainer.appendChild(listItem);
-}
-
-export function getProjList() {
-    return projList;
+    createBlankMainPage();
 }

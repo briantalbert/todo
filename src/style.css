@@ -129,5 +129,10 @@ li:hover {
     background-color: var(--color-500);
     justify-content: space-around;
     align-items: center;
-    justify-items: center;
+    padding: 10px;
+}
+
+.makenewproject {
+    align-content: center;
+    justify-content: center;
 }

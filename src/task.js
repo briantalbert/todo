@@ -1,5 +1,5 @@
 import "./project.js"
-import { generateProjects } from "./testdata";
+import { getProjList } from "./project.js";
 
 export class Task {
     constructor(taskName, project, dueDate) {
@@ -17,7 +17,7 @@ export function buildNewTaskWindow() {
     const clone = template.content.cloneNode(true);
 
     //add projects to select list
-    const projList = generateProjects();
+    const projList = getProjList();
     const select = clone.querySelector("#projects");
 
     let newOption = document.createElement('option');
