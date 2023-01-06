@@ -19,6 +19,10 @@ export class Project {
 
 let projList = [];
 
+export function getProjList() {
+    return projList;
+}
+
 export function buildNewProjectWindow() {
     const container = document.querySelector('.createnewwindow');
     container.innerHTML = "";
@@ -28,10 +32,6 @@ export function buildNewProjectWindow() {
     container.appendChild(clone);
     
     addEventListeners();
-}
-
-export function getProjList() {
-    return projList;
 }
 
 function addEventListeners () {
@@ -59,11 +59,9 @@ function addEventListeners () {
             projList.push(newProj);
             document.getElementById("projectname").value = "";
             addProjectToPage(newProj);
-            buildNewTaskWindow();
+            buildNewTaskWindow(newProj);
         }
     })
-
-
 }
 
 function addProjectToPage(newProj) {

@@ -9,7 +9,7 @@ export class Task {
     }
 }
 
-export function buildNewTaskWindow() {
+export function buildNewTaskWindow(proj) {
     const container = document.querySelector('.createnewwindow');
     container.innerHTML = "";
 
@@ -43,6 +43,22 @@ function addEventListeners() {
     const createNewButton = document.getElementById("addtoproject");
     createNewButton.addEventListener('click', (e) => {
         e.preventDefault();
-        alert('you pressed the button');
+        var taskName = document.getElementById("taskname").value;
+        var projName = document.getElementById("projects").value;
+        let attachedProject = getProjByName(projName);
+        if (taskName != "" && projName != "new") {
+            const newTask = new Task()
+        }
     })
+}
+
+function getProjByName(name) {
+    projList = getProjList();
+    projList.forEach(project => {
+        if (project.getName() == name) {
+            return project;
+        }
+    });
+
+    alert('somethin went wrong');
 }

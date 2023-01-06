@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 :root {
     --color-50: #f0fdfa;
     --color-100: #ccfbf1;
@@ -9,6 +11,8 @@
     --color-700: #0f766e;
     --color-800: #115e59;
     --color-900: #134e4a;
+
+    font-family: 'Roboto', sans-serif;
 }
 .container {
     display: grid;
@@ -123,8 +127,8 @@ li:hover {
     display: flex;
     flex-direction: column;
     color: var(--color-900);
-    height: 8em;
-    width: 15em;
+    height: 252px;
+    width: 18em;
     font-size: x-large;
     border: 2px solid var(--color-900);
     border-radius: 8px;
@@ -142,8 +146,8 @@ li:hover {
 
 .makenewtask form {
     display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr 1fr;
-    gap: .5em;
+    grid-template: repeat(6, 35px) / repeat(2, 215px);
+    gap: .3em;
 }
 
 #tasknamelabel,
@@ -172,11 +176,31 @@ li:hover {
     grid-column: 2 / 3;
 }
 
+#duedatelabel {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+}
+
+#duedate {
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+}
+
+#desclabel {
+    grid-row: 4 / 5;
+    grid-column: 1 / 2;
+}
+
+#description {
+    grid-row: 5 / 6;
+    grid-column: 1 / 3;
+}
+
 .buttons button {
     width: fit-content;
 }
 
 .buttons {
-    grid-row: 3 / 4;
+    grid-row: 6 / 7;
     grid-column: 1 / 3;
 }

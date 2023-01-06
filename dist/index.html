@@ -41,9 +41,16 @@
             <form action="" method="post">
                 <label for="taskname" id="tasknamelabel">Task Name:</label>
                 <input type="text" name="projectname" id="projectname">
+
                 <label for="projects" id="projectnamelabel">Attach to project:</label>
                 <select name="projects" id="projects">
                 </select>
+
+                <label for="duedate" id="duedatelabel">Due date:</label>
+                <input type="date" name="duedate" id="duedate">
+
+                <label for="desc" id="desclabel">Description:</label>
+                <textarea name="desc" id="description" cols="30" rows="10">Description of task.</textarea>
                 <div class="buttons">
                     <button type="submit" id="addtoproject">Add Task to Project</button>
                     <button type="reset">Clear</button>
