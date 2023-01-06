@@ -1,5 +1,7 @@
 import "./project.js"
 import { getProjList } from "./project.js";
+const {format} = require('date-fns');
+import { createBlankMainPage } from './home';
 
 export class Task {
     constructor(taskName, project, dueDate) {
@@ -43,22 +45,27 @@ function addEventListeners() {
     const createNewButton = document.getElementById("addtoproject");
     createNewButton.addEventListener('click', (e) => {
         e.preventDefault();
-        var taskName = document.getElementById("taskname").value;
-        var projName = document.getElementById("projects").value;
+        let taskName = document.getElementById("taskname").value;
+        let projName = document.getElementById("projects").value;
         let attachedProject = getProjByName(projName);
+        let dueDate = new Date();
+        dueDate = document.getElementById("duedate").value;
+
         if (taskName != "" && projName != "new") {
-            const newTask = new Task()
+            const newTask = new Task(taskName, attachedProject, dueDate);
+            attachedProject.addTask(newTask);
+            createBlankMainPage();
         }
     })
 }
 
 function getProjByName(name) {
-    projList = getProjList();
-    projList.forEach(project => {
-        if (project.getName() == name) {
-            return project;
+    const projList = getProjList();
+    
+    for (const proj of projList) {
+        if (proj.name == name) {
+            return proj;
         }
-    });
-
-    alert('somethin went wrong');
+    }
 }
+
