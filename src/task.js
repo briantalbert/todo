@@ -1,5 +1,5 @@
 import "./project.js"
-import { getProjList } from "./project.js";
+import { getProjList, getProjByName } from "./project.js";
 const {format} = require('date-fns');
 import { createBlankMainPage } from './home';
 
@@ -59,13 +59,5 @@ function addEventListeners() {
     })
 }
 
-function getProjByName(name) {
-    const projList = getProjList();
-    
-    for (const proj of projList) {
-        if (proj.name == name) {
-            return proj;
-        }
-    }
-}
+
 

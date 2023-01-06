@@ -23,6 +23,14 @@ export function getProjList() {
     return projList;
 }
 
+export function getProjByName(name) {
+    for (const proj of projList) {
+        if (proj.name == name) {
+            return proj;
+        }
+    }
+}
+
 export function buildNewProjectWindow() {
     const container = document.querySelector('.createnewwindow');
     container.innerHTML = "";
