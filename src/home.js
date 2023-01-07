@@ -1,10 +1,14 @@
 import { buildNewProjectWindow, getProjList, getProjByName } from "./project";
 import { Task, buildNewTaskWindow} from "./task.js";
 
+
 export function createBlankMainPage() {
+    
     if (document.querySelector('.blankhomepage')) {
-        document.querySelector('.blankhomepage').innerHTML = "";
+        const homePage = document.querySelector('.blankhomepage');
+        homePage.parentNode.removeChild(homePage);
     }
+
     const container = document.querySelector('.container');
     const blankMainPageDiv = document.createElement('div');
     blankMainPageDiv.classList.add('blankhomepage');
@@ -45,6 +49,7 @@ function addNewButtonEventListeners() {
         button.addEventListener('mouseup', (e) => {
             button.classList.remove('clicked');
             switch (e.target.classList[0]) {
+
                 case "newproject":
                     buildNewProjectWindow();
                     break;
