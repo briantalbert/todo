@@ -1,6 +1,8 @@
 import { createBlankMainPage } from './home';
 import { buildNewTaskWindow } from "./task";
 
+let projList = [];
+
 export class Project {
     constructor(projName) {
         this.name = projName;
@@ -16,8 +18,6 @@ export class Project {
     }
 
 }
-
-let projList = [];
 
 export function getProjList() {
     return projList;
@@ -40,6 +40,11 @@ export function buildNewProjectWindow() {
     container.appendChild(clone);
     
     addEventListeners();
+}
+
+export function createProjectView(project) {
+    console.log(project.name);
+    console.log(project.taskList);
 }
 
 function addEventListeners () {
@@ -77,4 +82,17 @@ function addProjectToPage(newProj) {
     listItem.textContent = newProj.getName();
     let listContainer = document.querySelector('.projectitems');
     listContainer.appendChild(listItem);
+
+    projectLinks();
+}
+
+function projectLinks() {
+    let links = document.querySelectorAll('.projectitems li');
+    links.forEach(link => {
+        const projName = link.textContent;
+        const thisProject = getProjByName(projName);
+        link.addEventListener('click', (e) => {
+            createProjectView(thisProject);
+        })
+    });
 }

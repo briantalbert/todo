@@ -1,4 +1,4 @@
-import { buildNewProjectWindow, getProjList } from "./project";
+import { buildNewProjectWindow, getProjList, getProjByName } from "./project";
 import { Task, buildNewTaskWindow} from "./task.js";
 
 export function createBlankMainPage() {
