@@ -34,7 +34,7 @@ export function getProjByName(name) {
 export function buildNewProjectWindow() {
     const container = document.querySelector('.createnewwindow');
     container.innerHTML = "";
-    const template = document.querySelector(".newprojectform");
+    const template = document.querySelector('.newprojectform');
     const clone = template.content.cloneNode(true);
 
     container.appendChild(clone);
