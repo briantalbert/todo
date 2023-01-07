@@ -1,7 +1,7 @@
 import { createBlankMainPage } from './home';
 import { buildNewTaskWindow } from "./task";
 
-let projList = [];
+const projList = [];
 
 export class Project {
     constructor(projName) {
