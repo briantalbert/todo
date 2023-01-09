@@ -1,63 +1,60 @@
-import "./project.js"
-import { getProjList, getProjByName } from "./project.js";
-const {format} = require('date-fns');
+import { Project, getProjList, getProjByName } from './project';
 import { createBlankMainPage } from './home';
 
+const { format } = require('date-fns');
+
 export class Task {
-    constructor(taskName, project, dueDate) {
-        this.name = taskName;
-        this.project = project;
-        this.dueDate = dueDate;
-    }
+  constructor(taskName, project, dueDate) {
+    this.name = taskName;
+    this.project = project;
+    this.dueDate = dueDate;
+  }
 }
 
 export function buildNewTaskWindow(proj) {
-    const container = document.querySelector('.createnewwindow');
-    container.innerHTML = "";
+  const container = document.querySelector('.createnewwindow');
+  container.innerHTML = '';
 
-    const template = document.querySelector(".newtaskform");
-    const clone = template.content.cloneNode(true);
+  const template = document.querySelector('.newtaskform');
+  const clone = template.content.cloneNode(true);
 
-    //add projects to select list
-    const projList = getProjList();
-    const select = clone.querySelector("#projects");
+  // add projects to select list
+  const projList = getProjList();
+  const select = clone.querySelector('#projects');
 
-    let newOption = document.createElement('option');
-    newOption.value = 'new';
-    newOption.text = '--Create New--';
-    select.appendChild(newOption);
+  const newOption = document.createElement('option');
+  newOption.value = 'new';
+  newOption.text = '--Create New--';
+  select.appendChild(newOption);
 
-    projList.forEach(proj => {
-        let listItem = proj.getName();
-        let option = document.createElement('option');
-        option.value = listItem;
-        option.text = listItem;
+  projList.forEach((proj) => {
+    const listItem = proj.getName();
+    const option = document.createElement('option');
+    option.value = listItem;
+    option.text = listItem;
 
-        select.appendChild(option);
-    });
+    select.appendChild(option);
+  });
 
-    container.appendChild(clone);
+  container.appendChild(clone);
 
-    addEventListeners();
+  addEventListeners();
 }
 
 function addEventListeners() {
-    const createNewButton = document.getElementById("addtoproject");
-    createNewButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        let taskName = document.getElementById("taskname").value;
-        let projName = document.getElementById("projects").value;
-        let attachedProject = getProjByName(projName);
-        let dueDate = new Date();
-        dueDate = document.getElementById("duedate").value;
+  const createNewButton = document.getElementById('addtoproject');
+  createNewButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const taskName = document.getElementById('taskname').value;
+    const projName = document.getElementById('projects').value;
+    const attachedProject = getProjByName(projName);
+    let dueDate = new Date();
+    dueDate = document.getElementById('duedate').value;
 
-        if (taskName != "" && projName != "new") {
-            const newTask = new Task(taskName, attachedProject, dueDate);
-            attachedProject.addTask(newTask);
-            createBlankMainPage();
-        }
-    })
+    if (taskName != '' && projName != 'new') {
+      const newTask = new Task(taskName, attachedProject, dueDate);
+      attachedProject.addTask(newTask);
+      createBlankMainPage();
+    }
+  });
 }
-
-
-
