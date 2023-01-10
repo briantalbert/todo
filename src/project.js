@@ -1,5 +1,6 @@
 import { createBlankMainPage } from './home';
 import { buildNewTaskWindow } from './task';
+import { saveState } from './index';
 
 const projList = [];
 
@@ -16,11 +17,20 @@ export class Project {
   addTask(task) {
     this.taskList.push(task);
   }
+
+  sortTasks() {
+    const list = this.taskList;
+    list.sort((a, b) => (a.dueDate, b.dueDate) ? 1 : -1);
+    this.taskList = list;
+  }
 }
+
 
 export function getProjList() {
   return projList;
 }
+
+
 
 export function getProjByName(name) {
   for (const proj of projList) {
@@ -51,11 +61,13 @@ export function createProjectView(project) {
   clone.querySelector('.projectname').textContent = projName;
   const tasks = project.taskList;
   const taskList = clone.querySelector('.tasklist');
+
   tasks.forEach(item => {
     const newListItem = document.createElement('li');
-    newListItem.innerText = item.name;
+    newListItem.innerText = item.name + ' - Due: ' + item.dueDate;
     taskList.appendChild(newListItem);
   });
+
   container.appendChild(clone);
 }
 
@@ -71,6 +83,7 @@ function addEventListeners() {
       projList.push(newProj);
       document.getElementById('projectname').value = '';
       addProjectToPage(newProj);
+      saveState();
       createBlankMainPage();
     }
   });
@@ -83,6 +96,7 @@ function addEventListeners() {
       projList.push(newProj);
       document.getElementById('projectname').value = '';
       addProjectToPage(newProj);
+      saveState();
       buildNewTaskWindow(newProj);
     }
   });

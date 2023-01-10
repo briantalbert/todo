@@ -1,6 +1,6 @@
 import { Project, getProjList, getProjByName } from './project';
 import { createBlankMainPage } from './home';
-
+import { saveState } from './index';
 const { format } = require('date-fns');
 
 export class Task {
@@ -9,6 +9,7 @@ export class Task {
     this.project = project;
     this.dueDate = dueDate;
   }
+
 }
 
 export function buildNewTaskWindow(proj) {
@@ -21,11 +22,6 @@ export function buildNewTaskWindow(proj) {
   // add projects to select list
   const projList = getProjList();
   const select = clone.querySelector('#projects');
-
-  const newOption = document.createElement('option');
-  newOption.value = 'new';
-  newOption.text = '--Create New--';
-  select.appendChild(newOption);
 
   projList.forEach((proj) => {
     const listItem = proj.getName();
@@ -54,6 +50,8 @@ function addEventListeners() {
     if (taskName != '' && projName != 'new') {
       const newTask = new Task(taskName, attachedProject, dueDate);
       attachedProject.addTask(newTask);
+      attachedProject.sortTasks()
+      saveState();
       createBlankMainPage();
     }
   });
